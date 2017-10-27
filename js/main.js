@@ -1,1 +1,1 @@
-let jscodeshift = ''; 
+let jscodeshift = 'jscodeshift is ace'; 

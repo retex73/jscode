@@ -70,6 +70,8 @@
 "use strict";
 
 
+var jscodeshift = '';
+
 /***/ })
 /******/ ]);
 //# sourceMappingURL=main.bundle.js.map

@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var LiveReloadPlugin = require('webpack-livereload-plugin'); 
 
 module.exports = {
     entry: {
@@ -23,5 +24,12 @@ module.exports = {
     stats: {
         colors: true
     },
+    plugins: [
+        new LiveReloadPlugin({
+            protocol: 'http', 
+            port: 35729, 
+            hostname: 'localhost'
+        })
+    ], 
     devtool: 'source-map'
 };
