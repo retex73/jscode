@@ -1,14 +1,18 @@
 var path = require('path');
 var webpack = require('webpack');
-var LiveReloadPlugin = require('webpack-livereload-plugin'); 
+
 
 module.exports = {
-    entry: {
-        app: './js/main.js',
-    }, 
+    entry: 
+         [
+        'webpack-dev-server/client?http://localhost:8080', 
+
+        './js/main.js'
+    ],   
     output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: 'main.bundle.js'
+        path: path.join(process.cwd(), '/build'), 
+        filename: 'main.bundle.js', 
+        publicPath: '/build/'
     },
     module: {
         loaders: [
@@ -16,7 +20,8 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015'], 
+                    compact: false
                 }
             }
         ]
@@ -24,12 +29,14 @@ module.exports = {
     stats: {
         colors: true
     },
+
     plugins: [
-        new LiveReloadPlugin({
-            protocol: 'http', 
-            port: 35729, 
-            hostname: 'localhost'
-        })
+        new webpack.HotModuleReplacementPlugin()
     ], 
-    devtool: 'source-map'
+    devServer: {
+        hot: true
+        
+    }, 
+
+    devtool: 'none'
 };
